@@ -54,8 +54,11 @@ echo '{
   ],
 
   "java": {
-    "install_flavor": "openjdk",
-    "jdk_version": "7"
+    "install_flavor": "oracle",
+    "jdk_version": "7",
+    "oracle": {
+      "accept_oracle_download_terms": true
+    }
   },
 
   "elasticsearch": {
@@ -92,8 +95,8 @@ time ssh -t $SSH_OPTIONS $HOST <<END
   sudo mkdir -p /etc/chef/; sudo mkdir -p /var/chef/cookbooks/elasticsearch
   sudo tar --strip 1 -C /var/chef/cookbooks/elasticsearch -xf /tmp/cookbook-elasticsearch-master.tar.gz
   sudo apt-get install bison zlib1g-dev libopenssl-ruby1.9.1 libssl-dev libyaml-0-2 libxslt-dev libxml2-dev libreadline-gplv2-dev libncurses5-dev file ruby1.9.1-dev git --yes --fix-missing
-  sudo /opt/chef/embedded/bin/gem install berkshelf --version 2.0.14 --no-rdoc --no-ri
-  sudo /opt/chef/embedded/bin/berks install --path=/var/chef/cookbooks/ --berksfile=/var/chef/cookbooks/elasticsearch/Berksfile
+  sudo /opt/chef/embedded/bin/gem install berkshelf --version 3.1.2 --no-rdoc --no-ri
+  sudo /opt/chef/embedded/bin/berks vendor --path=/var/chef/cookbooks/ --berksfile=/var/chef/cookbooks/elasticsearch/Berksfile
 END
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
